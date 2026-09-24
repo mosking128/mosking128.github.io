@@ -18,7 +18,8 @@ jekyll build
 
 - `_layouts/` · default / post
 - `_includes/` · header / footer / entry
-- `_posts/` · Markdown 随笔、手记（当前为占位示例）
+- `_posts/` · 你的文章（Markdown，目前为空）
+- `templates/post-template.md` · 新文章模板，复制到 `_posts/` 后改名即可
 - `assets/css/main.css` · 纸质质感与排版
 
 ## 说明
