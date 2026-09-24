@@ -1,0 +1,20 @@
+title: Mosking的博客
+description: 随笔与手记。示例主题，暂未写入真实内容。
+url: https://mosking128.github.io
+author: Mosking
+motto: 我的喜悲请你忽略不计，像此刻天上飘浮烟云
+bio: 写字的人，也写代码。
+
+# 构建
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+sass:
+  style: compressed
+
+# 默认 front matter
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

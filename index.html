@@ -1,0 +1,42 @@
+<!-- AI生成 -->
+<p data-aigc-mark="1" style="margin:0 0 8px;font-size:10px;line-height:1.3;color:#6b6560;font-weight:400;">AI生成</p>---
+layout: default
+title: 首页
+---
+
+<div class="layout">
+  <main>
+    <p class="motto">{{ site.motto }}</p>
+
+    <section class="entries" id="essays" aria-label="随笔">
+      {% assign essays = site.posts | where: "category", "随笔" %}
+      {% for post in essays %}
+      <a class="entry" href="{{ post.url | relative_url }}">
+        {% include entry.html post=post %}
+      </a>
+      {% endfor %}
+    </section>
+
+    <section class="entries" id="notes" aria-label="手记" style="margin-top: 2.75rem;">
+      {% assign notes = site.posts | where: "category", "手记" %}
+      {% for post in notes %}
+      <a class="entry" href="{{ post.url | relative_url }}">
+        {% include entry.html post=post %}
+      </a>
+      {% endfor %}
+    </section>
+  </main>
+
+  <aside class="sidebar">
+    <div class="avatar" role="img" aria-label="头像占位"></div>
+    <p class="side-label">关于</p>
+    <p class="side-bio">{{ site.bio }}</p>
+    <hr class="side-divider" />
+    <p class="side-label">最近</p>
+    <ul class="recent-list">
+      {% for post in site.posts limit: 3 %}
+      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </aside>
+</div>

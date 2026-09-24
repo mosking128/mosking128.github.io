@@ -1,0 +1,7 @@
+<div class="entry-meta">
+  <span class="entry-cat">{{ include.post.category | default: "手记" }}</span>
+  <time datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: '%Y.%m.%d' }}</time>
+</div>
+<hr class="entry-rule" />
+<h2 class="entry-title">{{ include.post.title }}</h2>
+<p class="entry-excerpt">{{ include.post.excerpt | default: include.post.content | strip_html | truncate: 40 }}</p>

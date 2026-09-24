@@ -1,0 +1,444 @@
+/* Mosking的博客 — 纸感日记主题 */
+
+:root {
+  --paper: #fafaf7;
+  --ink: #1c1c1c;
+  --ink-soft: #3a3a36;
+  --meta: #6f6f68;
+  --sage: #6b8f71;
+  --sage-soft: #8fak71;
+  --hairline: #e6e4dc;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif;
+  --sans: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --max: 920px;
+  --gap: 3.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background-color: var(--paper);
+  font-family: var(--serif);
+  line-height: 1.85;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 纸张纤维质感 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.55 0 0 0 0 0.53 0 0 0 0 0.48 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* 轻微纸色不均 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(232, 228, 210, 0.55), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 80%, rgba(236, 232, 218, 0.4), transparent 55%);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: rgba(107, 143, 113, 0.45);
+  text-underline-offset: 0.28em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--sage);
+  text-decoration-color: var(--sage);
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 3.25rem 1.75rem 5rem;
+}
+
+/* —— 顶栏 —— */
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 3.75rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--ink);
+}
+
+.brand-name {
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+.brand-leaf {
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.nav {
+  display: flex;
+  gap: 1.6rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+  color: var(--sage);
+}
+
+/* —— 布局 —— */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(200px, 0.85fr);
+  gap: var(--gap);
+  align-items: start;
+}
+
+.motto {
+  font-size: 1.12rem;
+  line-height: 2;
+  color: var(--ink-soft);
+  margin: 0 0 3.25rem;
+  max-width: 22em;
+}
+
+/* —— 日记条目 —— */
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+.entry {
+  display: block;
+  text-decoration: none;
+  max-width: 34rem;
+}
+
+.entry-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--meta);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.45rem;
+}
+
+.entry-cat {
+  color: var(--sage);
+  letter-spacing: 0.18em;
+}
+
+.entry-rule {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 0 0 0.85rem;
+}
+
+.entry-title {
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.55;
+  margin: 0 0 0.55rem;
+  letter-spacing: 0.01em;
+}
+
+.entry:hover .entry-title {
+  color: var(--sage);
+}
+
+.entry-excerpt {
+  margin: 0;
+  font-size: 0.98rem;
+  color: var(--meta);
+  line-height: 1.9;
+}
+
+/* —— 侧栏 —— */
+.sidebar {
+  padding-top: 0.35rem;
+}
+
+.avatar {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 30%, #f3f1ea, #e4e1d6);
+  border: 1px solid var(--hairline);
+  margin-bottom: 1.5rem;
+}
+
+.side-label {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  color: var(--meta);
+  margin: 0 0 0.65rem;
+}
+
+.side-bio {
+  margin: 0 0 2rem;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: var(--ink-soft);
+}
+
+.side-divider {
+  border: 0;
+  border-top: 1px solid var(--hairline);
+  margin: 0 0 1.5rem;
+}
+
+.recent-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.recent-list a {
+  font-size: 0.98rem;
+  color: var(--sage);
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 143, 113, 0.35);
+}
+
+/* —— 文章页 —— */
+.article-header {
+  margin-bottom: 2.5rem;
+  max-width: 36rem;
+}
+
+.article-meta {
+  display: flex;
+  gap: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--meta);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.article-title {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin: 0 0 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.article-dek {
+  margin: 0;
+  color: var(--meta);
+  font-size: 1rem;
+}
+
+.article-body {
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 2.05;
+  color: var(--ink-soft);
+}
+
+.article-body p {
+  margin: 0 0 1.35rem;
+}
+
+.article-body h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 2.25rem 0 0.9rem;
+  color: var(--ink);
+}
+
+.article-body .placeholder-note {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--meta);
+  border-left: 2px solid var(--hairline);
+  padding-left: 1rem;
+  margin: 2rem 0;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--meta);
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+}
+
+.back-link:hover {
+  color: var(--sage);
+}
+
+/* —— 归档 / 关于 —— */
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin: 0 0 0.5rem;
+}
+
+.page-lead {
+  color: var(--meta);
+  margin: 0 0 2.75rem;
+  max-width: 28em;
+}
+
+.year {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  color: var(--sage);
+  margin: 2rem 0 0.85rem;
+}
+
+.archive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.archive-list li {
+  display: flex;
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--hairline);
+  max-width: 36rem;
+}
+
+.archive-list time {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  color: var(--meta);
+  flex-shrink: 0;
+  width: 5.5rem;
+}
+
+.about-body {
+  max-width: 32rem;
+  font-size: 1.05rem;
+  line-height: 2.05;
+  color: var(--ink-soft);
+}
+
+.about-body p {
+  margin: 0 0 1.25rem;
+}
+
+.site-footer {
+  margin-top: 5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--hairline);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--meta);
+  letter-spacing: 0.08em;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-footer a {
+  text-decoration: none;
+}
+
+/* —— 响应式 —— */
+@media (max-width: 760px) {
+  .wrap {
+    padding: 2rem 1.25rem 3.5rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .nav {
+    gap: 1.15rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .article-title {
+    font-size: 1.55rem;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
+}

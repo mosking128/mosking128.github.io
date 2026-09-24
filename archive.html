@@ -1,0 +1,20 @@
+---
+layout: default
+title: 归档
+---
+
+<h1 class="page-title">归档</h1>
+<p class="page-lead">按时间收着的示例条目，方便以后翻旧账。</p>
+
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in posts_by_year %}
+<p class="year">{{ year.name }}</p>
+<ul class="archive-list">
+  {% for post in year.items %}
+  <li>
+    <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%m.%d' }}</time>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endfor %}

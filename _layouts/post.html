@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<a class="back-link" href="{{ '/' | relative_url }}">← 返回</a>
+
+<article>
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="entry-cat">{{ page.category | default: "手记" }}</span>
+      <time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%Y.%m.%d' }}</time>
+    </div>
+    <h1 class="article-title">{{ page.title }}</h1>
+    {% if page.excerpt %}
+    <p class="article-dek">{{ page.excerpt }}</p>
+    {% endif %}
+  </header>
+
+  <div class="article-body">
+    {{ content }}
+  </div>
+</article>
