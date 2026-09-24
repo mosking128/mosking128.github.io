@@ -1,9 +1,7 @@
 title: Mosking的博客
 description: 随笔与手记。示例主题，暂未写入真实内容。
 url: https://mosking128.github.io
-# 仓库名为 mosking.github.io（非用户名.github.io），故挂在子路径
-# 若将仓库改名为 mosking128.github.io，把 baseurl 改成 ""
-baseurl: /mosking.github.io
+baseurl: ""
 author: Mosking
 motto: 我的喜悲请你忽略不计，像此刻天上飘浮烟云
 bio: 写字的人，也写代码。
